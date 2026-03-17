@@ -24,7 +24,6 @@ public class BlogPostService {
     }
 
     public BlogPost savePost(BlogPost blogPost) {
-        //blogPost.setCreatedAt(LocalDateTime.now());
         return blogPostRepository.save(blogPost);
     }
 
