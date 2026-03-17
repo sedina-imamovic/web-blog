@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit post</title>
+
+    <style> body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f4;
+    }
+
+    .container {
+        max-width: 600px;
+        margin: 40px auto;
+        background: white;
+        padding: 25px;
+        border-radius: 12px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    input, textarea {
+        width: 100%;
+        padding: 10px;
+        margin-top: 6px;
+        margin-bottom: 15px;
+        border-radius: 8px;
+        border: 1px solid #ccc;
+    }
+
+    button {
+        padding: 10px 15px;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        font-weight: bold;
+    }
+
+    .save-btn {
+        background-color: #333;
+        color: white;
+    }
+
+    .back-link {
+        display: inline-block;
+        margin-top: 15px;
+        text-decoration: none;
+        color: #333;
+    }
+    </style>
+
+</head>
+<body>
+
+<nav style="padding:15px; background-color:#222;">
+    <a th:href="@{/home}" style="color:white; margin-right:15px;">Home</a>
+    <a th:href="@{/posts}" style="color:white; margin-right:15px;">Posts</a>
+    <a th:href="@{/posts/create}" style="color:white;">Create Post</a>
+</nav>
+
+<hr>
+
+<div class="container">
+
+    <h1>Edit Post</h1>
+
+    <form th:action="@{/posts/{id}(id=${post.id})}" method="post">
+
+        <label>Title</label>
+        <input type="text"
+               name="title"
+               th:value="${post.title}"
+               required/>
+
+        <label>Content</label>
+        <textarea name="content"
+                  rows="6"
+                  required
+                  th:text="${post.content}"></textarea>
+
+        <label>Image URL</label>
+        <input type="text"
+               name="imageUrl"
+               th:value="${post.imageUrl}"/>
+
+        <button type="submit" class="save-btn">Update</button>
+
+    </form>
+
+    <a th:href="@{/posts/{id}(id=${post.id})}" class="back-link">
+        ← Back to post
+    </a>
+
+</div>
+
+</body>
+</html>

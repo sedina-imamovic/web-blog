@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>Create post</title>
+
+    <style>
+        body {
+            font-family: Arial;
+            background: #f4f4f4;
+            margin: 0;
+        }
+
+        .navbar {
+            background: #333;
+            padding: 15px;
+        }
+
+        .navbar a {
+            color: white;
+            margin-right: 15px;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .form-container {
+            background: white;
+            max-width: 600px;
+            margin: 40px auto;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        label {
+            font-weight: bold;
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+            font-size: 14px;
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        button {
+            background: #333;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        button:hover {
+            background: #555;
+        }
+    </style>
+
+</head>
+<body>
+
+<nav style="padding:15px; background-color:#222;">
+    <a th:href="@{/home}" style="color:white; margin-right:15px;">Home</a>
+    <a th:href="@{/posts}" style="color:white; margin-right:15px;">Posts</a>
+    <a th:href="@{/posts/create}" style="color:white;">Create Post</a>
+</nav>
+
+<hr>
+
+<div class="form-container">
+
+    <h1>Create New Post</h1>
+
+    <form th:action="@{/posts/create}"
+          th:object="${post}"
+          method="post">
+
+        <label>Title</label>
+        <input type="text"
+               th:field="*{title}"
+               required/>
+
+        <label>Content</label>
+        <textarea th:field="*{content}"
+                  required></textarea>
+
+        <label>Image URL (optional)</label>
+        <input type="text"
+               th:field="*{imageUrl}"/>
+
+        <button type="submit">Save Post</button>
+
+    </form>
+
+</div>
+
+<br>
+<a href="/posts/">Tillbaka</a>
+
+
+</body>
+</html>
